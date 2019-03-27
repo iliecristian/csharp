@@ -1,0 +1,124 @@
+﻿<Window x:Name="mainWindow" x:Class="TotalCommanderNew.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TotalCommanderNew"
+        mc:Ignorable="d"
+        Title="Total Commander" Height="450" Width="800">
+    <Grid x:Name="mainGrid" >
+        <!-- Grid for the Colums -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <!-- Left List Box -->
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+            <!-- Right List Box -->
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Grid for the Rows -->
+        <Grid.RowDefinitions>
+            <!-- Menu Bar -->
+            <RowDefinition Height="20" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+
+        <!-- Menu Bar -->
+        <Menu x:Name="menuBar" Grid.Row="0" Grid.ColumnSpan="5" 
+              Height="20" IsMainMenu="True">
+            <MenuItem Header="_File" IsTabStop="False">
+                <MenuItem x:Name="Pack" Header="Pack" Click="Pack_Click" />
+                <MenuItem x:Name="Unpack"  Header="Unpack" Click="Unpack_Click" />
+                <MenuItem x:Name="CompareByContent" Header="Compare by content" Click="CompareByContent_Click" />
+                <MenuItem x:Name="Exit" Header="Exit" />
+            </MenuItem>
+            <MenuItem Header="_Show" IsTabStop="False">
+                <MenuItem x:Name="Full" Header="Full" Click="Full_Click" />
+                <MenuItem x:Name="Tree" Header="Tree" Click="Tree_Click" />
+                <MenuItem x:Name="VerticalArrangement" Header="Vertical Arrangement" Click="VerticalArrangement_Click" />
+                <MenuItem x:Name="NewTab" Header="New Tab" Click="NewTab_Click" />
+            </MenuItem>
+
+            <MenuItem Header="_Help" IsTabStop="False">
+                <MenuItem x:Name="About" Header="About" Click="About_Click" />
+            </MenuItem>
+        </Menu>
+
+        <!-- Left Partition Selecton Combo Box and Path Display -->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ComboBox x:Name="leftPartition" Grid.Column="0" Width="50" Height="20" HorizontalAlignment="Left" Margin="0,5,0,0" SelectionChanged="PartitionComboBox_SelectionChanged" IsTabStop="False" Loaded="PartitionComboBox_Loaded"/>
+            <TextBox x:Name="LeftPathDisplay" Grid.Column="1" Margin="10,5,0,0" Height="20" IsReadOnly="True" IsTabStop="False"/>
+        </Grid>
+
+        <!-- Left Partition Selecton Combo Box and Path Display -->
+        <Grid Grid.Row="1" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ComboBox x:Name="rightPartition" Grid.Column="0" Width="50" Height="20" HorizontalAlignment="Left" Margin="0,5,0,0" SelectionChanged="PartitionComboBox_SelectionChanged" IsTabStop="False" Loaded="PartitionComboBox_Loaded" />
+            <TextBox x:Name="RightPathDisplay" Grid.Column="1" Margin="10,5,0,0" Height="20" IsReadOnly="True" IsTabStop="False"/>
+        </Grid>
+        
+        <!-- Left List Box -->
+        <TabControl x:Name="leftTabControl" Grid.Row="2" Grid.Column="1" GotFocus="TabControl_GotFocus" MouseLeftButtonDown="TabControl_MouseLeftButtonDown" KeyDown="TabControl_KeyDown">
+            <TabItem Visibility="Hidden">
+            </TabItem>
+        </TabControl>
+
+        <!-- Center Grid Splitter -->
+        <GridSplitter x:Name="gridSplitter" Width="2" Height="auto" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" ResizeBehavior="PreviousAndNext" IsTabStop="False" />
+
+        <!-- Right List Box -->
+        <TabControl x:Name="rightTabControl" Grid.Row="2" Grid.Column="3" GotFocus="TabControl_GotFocus" MouseLeftButtonDown="TabControl_MouseLeftButtonDown" KeyDown="TabControl_KeyDown" >
+            <TabItem Visibility="Hidden">
+            </TabItem>
+        </TabControl>
+
+        <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="ViewButton" Grid.Row="0" Grid.Column="0" Content="F3 View" Height="20" IsTabStop="False" Click="ViewButton_Click" />
+            <Button x:Name="EditButton" Grid.Row="0" Grid.Column="1" Content="F4 Edit" Height="20" Click="EditButton_Click" IsTabStop="False" />
+            <Button x:Name="CopyButton" Grid.Row="0" Grid.Column="2" Content="F5 Copy" Height="20" Click="CopyButton_Click" IsTabStop="False" />
+            <Button x:Name="ModeButton" Grid.Row="0" Grid.Column="3" Content="F6 Move" Height="20" Click="ModeButton_Click" IsTabStop="False" />
+            <Button x:Name="NewFolderButton" Grid.Row="0" Grid.Column="4" Content="F7 NewFolder" Height="20" Click="NewFolderButton_Click" IsTabStop="False" />
+            <Button x:Name="DeleteButton" Grid.Row="0" Grid.Column="5" Content="F8 Delete" Height="20" Click="DeleteButton_Click" IsTabStop="False" />
+            <Button x:Name="ExitButton" Grid.Row="0" Grid.Column="6" Content="Alt+F4 Exit" Height="20" Click="ExitButton_Click" IsTabStop="False" />
+        </Grid>
+
+    </Grid>
+</Window>
+
+
