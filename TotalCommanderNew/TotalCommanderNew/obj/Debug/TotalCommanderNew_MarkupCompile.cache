@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\LenovoProfesionall\source\repos\TotalCommanderNew\TotalCommanderNew\obj\Debug\
+D:\Projects\An II - Sem 2\Medii Vizuale de Programare\C# - Repo\TotalCommanderNew\TotalCommanderNew\obj\Debug\
 TotalCommanderNew
 none
 false
 DEBUG;TRACE
-C:\Users\LenovoProfesionall\source\repos\TotalCommanderNew\TotalCommanderNew\App.xaml
+D:\Projects\An II - Sem 2\Medii Vizuale de Programare\C# - Repo\TotalCommanderNew\TotalCommanderNew\App.xaml
 6-1881712394
 
-12926445992
-161530435080
+161579332175
+16-12578743
 MainWindow.xaml;Views\ListViewView.xaml;Views\TreeListView.xaml;Windows\CompareFilesWindow.xaml;Windows\NewArchiveWindow.xaml;Windows\NewFolderWindow.xaml;
 
-False
+True
 
