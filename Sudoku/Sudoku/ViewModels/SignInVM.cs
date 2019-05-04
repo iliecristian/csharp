@@ -4,6 +4,7 @@ using Sudoku.Services;
 using Sudoku.Util;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Sudoku.ViewModels
     {
         /* Properties */
         public string Username { get; set; }
-        public List<User> Users { get; set; }
+        public ObservableCollection<User> Users { get; set; }
 
         private User selectedUser;
         public object SelectedUser
@@ -28,13 +29,12 @@ namespace Sudoku.ViewModels
             set
             {
                 User newValue = value as User;
-                if (selectedUser == newValue)
-                    return;
 
+                CanExecuteCommand = Validator.CanExecuteAction(newValue);
+                
                 selectedUser = newValue;
                 OnPropertyChanged("SelectedUser");
             }
-
         }
 
         /* Variables */
@@ -44,7 +44,11 @@ namespace Sudoku.ViewModels
         public SignInVM()
         {
             actions = new SignInActions(this);
-            Users = DataManager.Instance.LoadAllUsers();
+
+            Users = new ObservableCollection<User>();
+            SelectedUser = null;
+            foreach(var item in DataManager.Instance.LoadAllUsers())
+                Users.Add(item);
         }
 
         /* Output */
@@ -74,14 +78,47 @@ namespace Sudoku.ViewModels
             }
         }
 
-        public ICommand newUserCommand;
+        private ICommand newUserCommand;
         public ICommand NewUserCommand
         {
             get
             {
                 if (newUserCommand == null)
-                    newUserCommand = new RelayCommand(actions.NewUser, param => CanExecuteCommand);
+                    newUserCommand = new RelayCommand(actions.NewUser, param => true);
                 return newUserCommand;
+            }
+        }
+
+        private ICommand deleteUserCommand;
+        public ICommand DeleteUserCommand
+        {
+            get
+            {
+                if (deleteUserCommand == null)
+                    deleteUserCommand = new RelayCommand(actions.DeleteUser, param => CanExecuteCommand);
+                return deleteUserCommand;
+            }
+        }
+
+        private ICommand playCommand;
+        public ICommand PlayCommand
+        {
+            get
+            {
+                if (playCommand == null)
+                    playCommand = new RelayCommand(actions.Play, param => CanExecuteCommand);
+                return playCommand;
+            }
+        }
+
+        private ICommand exitCommand;
+        public ICommand ExitCommand
+        {
+            get
+            {
+                if (exitCommand == null)
+                    exitCommand = new RelayCommand(actions.Exit, param => true);
+                return exitCommand;
             }
         }
     }

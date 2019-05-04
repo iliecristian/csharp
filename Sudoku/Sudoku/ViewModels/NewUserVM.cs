@@ -1,5 +1,6 @@
 ﻿using Sudoku.Commands;
 using Sudoku.Services;
+using Sudoku.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,18 @@ namespace Sudoku.ViewModels
         }
 
         public string Name { get; set; }
-        public string Image { get; set; }
+
+        private string image = DataManager.Instance.StartupPath + @"\Images\user1.jpg";
+        public string Image
+        {
+            get => image;
+            set
+            {
+                image = value;
+                OnPropertyChanged("Image");
+            }
+        }
+
         public Window CurrentWindow { get; set; }
 
         /* Constructors */

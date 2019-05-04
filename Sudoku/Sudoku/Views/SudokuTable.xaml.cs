@@ -16,14 +16,12 @@ using System.Windows.Shapes;
 namespace Sudoku.Views
 {
     /// <summary>
-    /// Interaction logic for NewUser.xaml
+    /// Interaction logic for SudokuTable.xaml
     /// </summary>
-    public partial class NewUser : Window
+    public partial class SudokuTable : UserControl
     {
-        public SignIn SignInView;
-        public NewUser(SignIn signInView)
+        public SudokuTable()
         {
-            this.SignInView = signInView;
             InitializeComponent();
         }
     }

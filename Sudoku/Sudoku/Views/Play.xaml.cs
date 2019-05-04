@@ -10,20 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Sudoku.Views
 {
     /// <summary>
-    /// Interaction logic for NewUser.xaml
+    /// Interaction logic for Play.xaml
     /// </summary>
-    public partial class NewUser : Window
+    public partial class Play : Window
     {
-        public SignIn SignInView;
-        public NewUser(SignIn signInView)
+        public Play()
         {
-            this.SignInView = signInView;
             InitializeComponent();
         }
     }

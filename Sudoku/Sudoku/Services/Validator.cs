@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sudoku.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,13 @@ namespace Sudoku.Services
             if (username != "")
                 return true;
             return false;
+        }
+
+        public static bool CanExecuteAction(User user)
+        {
+            if (user == null)
+                return false;
+            return true;
         }
     }
 }

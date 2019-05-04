@@ -1,4 +1,5 @@
 ﻿using Sudoku.Models;
+using Sudoku.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,12 +16,17 @@ namespace Sudoku.Util
         private static readonly DataManager instance = new DataManager();
         public static DataManager Instance { get => instance; }
         static DataManager() { }
-        private DataManager() { Users = LoadAllUsers(); }
+        private DataManager()
+        {
+            Users = LoadAllUsers();
+            if (Users == null)
+                Users = new List<User>();
+        }
 
         /* Properties */
         public string StartupPath { get => System.IO.Directory.GetCurrentDirectory(); }
-        //private List<User> users; // Not needed now!
         public List<User> Users { get; set; }
+        public User CurrentUser { get; set; }
 
         /* Variables */
         private readonly string usersPath = "users.dat";
@@ -32,6 +38,12 @@ namespace Sudoku.Util
             SaveAllUsers();
         }
 
+        public void RemoveUser(int index)
+        {
+            Users.RemoveAt(index);
+            SaveAllUsers();
+        }
+
         public void SaveAllUsers()
         {
             Save<List<User>>(Users, usersPath);
@@ -40,6 +52,30 @@ namespace Sudoku.Util
         public List<User> LoadAllUsers()
         {
             return Load<List<User>>(usersPath);
+        }
+
+        public List<Tile> LoadLevel(PlayVM.TableSize tableSize)
+        {
+            switch (tableSize)
+            {
+                case PlayVM.TableSize._4x4:
+                    {
+                        return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\4x4_1.dat");
+                    }
+                case PlayVM.TableSize._6x6:
+                    {
+                        return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\6x6_1.dat");
+                    }
+                case PlayVM.TableSize._9x9:
+                    {
+                        return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\9x9_1.dat");
+                    }
+
+                default:
+                    {
+                        return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\4x4_1.dat");
+                    }
+            }
         }
 
         /* Main Methods */
