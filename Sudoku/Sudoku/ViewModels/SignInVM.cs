@@ -1,4 +1,4 @@
-﻿using Sudoku.Commands;
+﻿    using Sudoku.Commands;
 using Sudoku.Models;
 using Sudoku.Services;
 using Sudoku.Util;
@@ -47,7 +47,8 @@ namespace Sudoku.ViewModels
 
             Users = new ObservableCollection<User>();
             SelectedUser = null;
-            foreach(var item in DataManager.Instance.LoadAllUsers())
+            List<User> usersList = DataManager.Instance.LoadAllUsers();
+            foreach (var item in usersList)
                 Users.Add(item);
         }
 

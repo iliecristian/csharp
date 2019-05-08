@@ -1,4 +1,5 @@
-﻿<Window x:Class="Sudoku.Views.Play"
+﻿<Window x:Name="playWindow"
+        x:Class="Sudoku.Views.Play"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,7 +12,7 @@
         <vm:PlayVM x:Key="playVM"/>
     </Window.Resources>
     
-    <Grid x:Name="MainGrid" DataContext="{Binding Source={StaticResource playVM}}">
+    <Grid x:Name="MainGrid" DataContext="{Binding Source={StaticResource playVM}}" Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="*" />
@@ -39,21 +40,31 @@
                         <Binding ElementName="SudokuGrid" />
                     </MenuItem.CommandParameter>
                 </MenuItem>
-                    <MenuItem Header="Open game" />
-                <MenuItem Header="Save Game" />
-                <MenuItem Header="Statistics" />
-                <MenuItem Header="Exit" />
+                <MenuItem Header="Open game" Command="{Binding Path=OpenGameCommand}">
+                    <MenuItem.CommandParameter>
+                        <Binding ElementName="SudokuGrid" />
+                    </MenuItem.CommandParameter>
+                </MenuItem>
+                <MenuItem Header="Save Game" Command="{Binding Path=SaveGame}" />
+                <MenuItem Header="Statistics" Command="{Binding Path=StatisticsCommand}"/>
+                <MenuItem Header="Exit" Command="{Binding Path=ExitCommand}">
+                    <MenuItem.CommandParameter>
+                        <Binding ElementName="playWindow" />
+                    </MenuItem.CommandParameter>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Options">
-                <MenuItem Header="Standard"/>
+                <MenuItem Header="Standard" Command="{Binding Path=SizeStandardCommand}"/>
                 <MenuItem Header="Custom">
-                    <MenuItem Header="4x4" />
-                    <MenuItem Header="4x4" />
-                    <MenuItem Header="9x9" />
+                    <MenuItem Header="4x4" Command="{Binding Path=Size4x4Command}" />
+                    <MenuItem Header="6x6" Command="{Binding Path=Size6x6Command}" />
+                    <MenuItem Header="9x9" Command="{Binding Path=Size9x9Command}" />
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Help">
-                <MenuItem Header="About"/>
+                <MenuItem Header="About">
+                    <MenuItem Header="Ilie Florian-Cristian 10LF372" />
+                </MenuItem>
             </MenuItem>
         </Menu>
 
@@ -63,7 +74,12 @@
         <!-- Sudoku Grid -->
         <UniformGrid Columns="6" x:Name="SudokuGrid" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="4" />
 
-        <TextBlock Text="{Binding Path=GameOverText}" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" />
+        <!-- Timer -->
+        <TextBlock Text="{Binding Path=SecondsRemaining}" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+
+        <!-- Game Over Text -->
+        <TextBlock Text="{Binding Path=GameOverText}" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" />
+
 
     </Grid>
 </Window>

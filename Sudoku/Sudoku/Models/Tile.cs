@@ -10,9 +10,7 @@ namespace Sudoku.Models
     {
         /* Properties */
         public int Value { get; set; }
-        public int Row { get; set; }
-        public int Column { get; set; }
-        public bool CanBeRemoved { get; set; }
+        public bool IsEditable { get; set; }
         public BigTile BigTile { get; set; }
     }
 }

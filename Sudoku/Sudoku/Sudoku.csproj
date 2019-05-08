@@ -59,7 +59,6 @@
     <Compile Include="Converters\NewGameConverter.cs" />
     <Compile Include="Converters\NewUserConverter.cs" />
     <Compile Include="Models\BigTile.cs" />
-    <Compile Include="Models\Level.cs" />
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\NewUserActions.cs" />
@@ -72,6 +71,7 @@
     <Compile Include="ViewModels\NewUserVM.cs" />
     <Compile Include="ViewModels\PlayVM.cs" />
     <Compile Include="ViewModels\SignInVM.cs" />
+    <Compile Include="ViewModels\StatisticsVM.cs" />
     <Compile Include="Views\NewUser.xaml.cs">
       <DependentUpon>NewUser.xaml</DependentUpon>
     </Compile>
@@ -80,6 +80,9 @@
     </Compile>
     <Compile Include="Views\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics.xaml.cs">
+      <DependentUpon>Statistics.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SignIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

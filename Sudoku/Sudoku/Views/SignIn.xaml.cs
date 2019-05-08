@@ -25,29 +25,23 @@ namespace Sudoku.Views
         public SignIn()
         {
             InitializeComponent();
+
+            /* Used to create new Sudoku Levels */
+            /*
             List<Tile> Tiles = new List<Tile>();
-
-            Tiles.Add(new Tile() { Value = 3, Row = 0, Column = 0, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 4, Row = 0, Column = 1, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 1, Row = 0, Column = 2, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 0, Row = 0, Column = 3, CanBeRemoved = false });
-
-            Tiles.Add(new Tile() { Value = 0, Row = 1, Column = 1, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 2, Row = 1, Column = 2, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 0, Row = 1, Column = 3, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 0, Row = 1, Column = 4, CanBeRemoved = false });
-
-            Tiles.Add(new Tile() { Value = 0, Row = 2, Column = 0, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 0, Row = 2, Column = 1, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 2, Row = 2, Column = 2, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 0, Row = 2, Column = 3, CanBeRemoved = false });
-
-            Tiles.Add(new Tile() { Value = 0, Row = 3, Column = 0, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 1, Row = 3, Column = 1, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 4, Row = 3, Column = 2, CanBeRemoved = false });
-            Tiles.Add(new Tile() { Value = 3, Row = 3, Column = 3, CanBeRemoved = false });
-            
-            //DataManager.Instance.Save<List<Tile>>(Tiles, DataManager.Instance.StartupPath + @"\Levels\3x3_1.dat");
+            List<int> list = new List<int>()
+            {
+                0,0,0,3,
+                3,2,4,0,
+                0,4,3,2,
+                2,0,0,0
+            };
+            foreach (int elem in list)
+            {
+                Tiles.Add(new Tile() { Value = elem });
+            }
+            DataManager.Instance.Save<List<Tile>>(Tiles, DataManager.Instance.StartupPath + @"\Levels\3x3_3.dat");
+            */
         }
     }
 }

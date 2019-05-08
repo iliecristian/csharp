@@ -27,6 +27,7 @@ namespace Sudoku.Util
         public string StartupPath { get => System.IO.Directory.GetCurrentDirectory(); }
         public List<User> Users { get; set; }
         public User CurrentUser { get; set; }
+        public int TimerSeconds = 60; 
 
         /* Variables */
         private readonly string usersPath = "users.dat";
@@ -46,6 +47,8 @@ namespace Sudoku.Util
 
         public void SaveAllUsers()
         {
+            Users.Remove(CurrentUser);
+            Users.Add(CurrentUser);
             Save<List<User>>(Users, usersPath);
         }
 
@@ -56,24 +59,47 @@ namespace Sudoku.Util
 
         public List<Tile> LoadLevel(PlayVM.TableSize tableSize)
         {
+            Random rand = new Random();
+            int choice = rand.Next(3);
+
             switch (tableSize)
             {
                 case PlayVM.TableSize._4x4:
                     {
-                        return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\4x4_1.dat");
+                        if (choice == 0)
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\4x4_1.dat");
+                        else if (choice == 1)
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\4x4_1.dat");
+                        else
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\4x4_1.dat");
                     }
                 case PlayVM.TableSize._6x6:
                     {
-                        return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\6x6_1.dat");
+                        if (choice == 0)
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\6x6_1.dat");
+                        else if (choice == 1)
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\6x6_1.dat");
+                        else
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\6x6_1.dat");
                     }
                 case PlayVM.TableSize._9x9:
                     {
-                        return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\9x9_1.dat");
+                        if (choice == 0)
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\9x9_1.dat");
+                        else if (choice == 1)
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\9x9_1.dat");
+                        else
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\9x9_1.dat");
                     }
 
                 default:
                     {
-                        return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\4x4_1.dat");
+                        if (choice == 0)
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\9x9_1.dat");
+                        else if (choice == 1)
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\9x9_2.dat");
+                        else
+                            return DataManager.Instance.Load<List<Tile>>(DataManager.Instance.StartupPath + @"\Levels\9x9_3.dat");
                     }
             }
         }

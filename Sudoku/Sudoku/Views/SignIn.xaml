@@ -11,7 +11,7 @@
         <vm:SignInVM x:Key="signInVM" />
     </UserControl.Resources>
 
-    <Grid DataContext="{Binding Source={StaticResource signInVM}}" Background="#FFFFFF">
+    <Grid DataContext="{Binding Source={StaticResource signInVM}}" Background="White">
         <!-- Grid Definition -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -87,10 +87,10 @@
             </Button>
         </Grid>
 
-        <TextBlock x:Name="textBlock" Grid.Column="2" HorizontalAlignment="Left" Margin="58,107,0,0" Grid.Row="1" Grid.RowSpan="2" TextWrapping="Wrap" VerticalAlignment="Top"
+        <TextBlock x:Name="textBlock" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"
                    Text="{Binding SelectedUser.Name}"/>
 
-        <Image Grid.Column="2" Grid.Row="1" Source="{Binding SelectedUser.Image}" Grid.RowSpan="2" Margin="10,10,10,10"/>
+        <Image Grid.Column="2" Grid.Row="1" Source="{Binding SelectedUser.Image}" Grid.RowSpan="2" Margin="10,20,10,10"/>
 
     </Grid>
 </UserControl>

@@ -33,7 +33,6 @@ namespace Sudoku.ViewModels
         }
 
         public string Name { get; set; }
-
         private string image = DataManager.Instance.StartupPath + @"\Images\user1.jpg";
         public string Image
         {
