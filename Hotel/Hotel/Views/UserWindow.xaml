@@ -1,0 +1,175 @@
+﻿<Window x:Class="Hotel.Views.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel.Views"
+        xmlns:ctx="clr-namespace:Hotel.ViewModels"
+        mc:Ignorable="d"
+        Title="UserWindow" Height="470" Width="1360" ResizeMode="NoResize">
+    <Window.DataContext>
+        <ctx:ReservationVM />
+    </Window.DataContext>
+    <Grid>
+        <TextBox x:Name="textBox" Text="{Binding Path=StartDate}" HorizontalAlignment="Left" Height="24" Margin="10,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_Copy" Text="{Binding Path=EndDate}" HorizontalAlignment="Left" Height="24" Margin="136,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_Copy1" Text="{Binding Path=Persons}" HorizontalAlignment="Left" Height="24" Margin="261,38,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="button_Copy5" Content="Search" HorizontalAlignment="Left" Margin="386,38,0,0" VerticalAlignment="Top" Width="120" Height="24"
+                Command="{Binding Path=Search}"/>
+
+        <ListView x:Name="roomList" ItemsSource="{Binding Path=RoomList}" HorizontalAlignment="Left" Height="244" Margin="10,110,0,0" VerticalAlignment="Top" Width="246">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Type" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Type}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Price" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Price}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="serviceList" ItemsSource="{Binding Path=ExtraServicesList}" HorizontalAlignment="Left" Height="244" Margin="261,110,0,0" VerticalAlignment="Top" Width="263">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Type" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Type}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Price" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Price}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="discountList" ItemsSource="{Binding Path=DiscountList}" HorizontalAlignment="Left" Height="244" Margin="529,110,0,0" VerticalAlignment="Top" Width="255">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Type" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Type}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Discount" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Value}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="106,78,0,0" TextWrapping="Wrap" Text="Rooms" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="360,80,0,0" TextWrapping="Wrap" Text="Extra Services" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="636,84,0,0" TextWrapping="Wrap" Text="Discounts" VerticalAlignment="Top"/>
+
+        <Button x:Name="button" Content="Select Room" HorizontalAlignment="Left" Margin="10,358,0,0" VerticalAlignment="Top" Width="246" Height="34"
+                Command="{Binding Path=SelectRoom}">
+            <Button.CommandParameter>
+                <Binding ElementName="roomList" Path="SelectedItem" />
+            </Button.CommandParameter>
+        </Button>
+        
+        <Button x:Name="button_Copy" Content="Select Extra Service" HorizontalAlignment="Left" Margin="261,358,0,0" VerticalAlignment="Top" Width="263" Height="34"
+                Command="{Binding Path=SelectService}">
+            <Button.CommandParameter>
+                <Binding ElementName="serviceList" Path="SelectedItem" />
+            </Button.CommandParameter>
+        </Button>
+        
+        <Button x:Name="button_Copy1" Content="Select Discount" HorizontalAlignment="Left" Margin="529,358,0,0" VerticalAlignment="Top" Width="255" Height="34"
+                Command="{Binding Path=SelectDiscount}">
+            <Button.CommandParameter>
+                <Binding ElementName="discountList" Path="SelectedItem" />
+            </Button.CommandParameter>
+        </Button>
+        
+        <Button x:Name="button_Copy2" Content="Add Reservation" HorizontalAlignment="Left" Margin="10,396,0,0" VerticalAlignment="Top" Width="246" Height="34"
+                Command="{Binding Path=AddReservation}"/>
+
+        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="10,17,0,0" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="136,17,0,0" TextWrapping="Wrap" Text="End Date" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="261,17,0,0" TextWrapping="Wrap" Text="Persons" VerticalAlignment="Top"/>
+
+        <ListView x:Name="resList" ItemsSource="{Binding Path=ReservationList}" HorizontalAlignment="Left" Height="244" Margin="813,110,0,0" VerticalAlignment="Top" Width="515">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="State" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=State}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Start Date" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=StartDate}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="End Date" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=EndDate}" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="button_Copy3" Content="Cancel Reservation" HorizontalAlignment="Left" Margin="813,358,0,0" VerticalAlignment="Top" Width="255" Height="34"
+                Command="{Binding Path=CancelReservation}">
+            <Button.CommandParameter>
+                <Binding ElementName="resList" Path="SelectedItem"/>
+            </Button.CommandParameter>
+        </Button>
+        <Button x:Name="button_Copy4" Content="Pay Reservation" HorizontalAlignment="Left" Margin="1073,358,0,0" VerticalAlignment="Top" Width="255" Height="34"
+                Command="{Binding Path=PayReservation}">
+            <Button.CommandParameter>
+                <Binding ElementName="resList" Path="SelectedItem"/>
+            </Button.CommandParameter>
+        </Button>
+        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="1044,80,0,0" TextWrapping="Wrap" Text="Reservations" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="261,400,0,0" TextWrapping="Wrap" Text="Total Cost:" VerticalAlignment="Top" FontSize="18" Height="34"/>
+        <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="360,400,0,0" TextWrapping="Wrap" Text="{Binding Path=Total}" VerticalAlignment="Top" FontSize="18" Height="34"/>
+
+    </Grid>
+</Window>
